@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 216 14% 29%;
+    --card: 0 0% 100%;
+    --card-foreground: 216 14% 29%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 14% 29%;
+    --primary: 90 35% 62%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 93%;
+    --secondary-foreground: 216 14% 29%;
+    --muted: 0 0% 93%;
+    --muted-foreground: 220 4% 46%;
+    --accent: 90 35% 62%;
+    --accent-foreground: 216 14% 29%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 214 10% 89%;
+    --input: 214 10% 89%;
+    --ring: 90 35% 62%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 216 14% 12%;
+    --foreground: 0 0% 98%;
+    --card: 216 14% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 216 14% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 90 35% 62%;
+    --primary-foreground: 216 14% 12%;
+    --secondary: 216 14% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 216 14% 20%;
+    --muted-foreground: 215 10% 65%;
+    --accent: 216 14% 20%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 216 14% 20%;
+    --input: 216 14% 20%;
+    --ring: 90 35% 62%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  }
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 0.6s ease-out forwards;
+}
+
+.animate-fadeInLeft {
+  animation: fadeInLeft 0.6s ease-out forwards;
+}
+
+.animate-fadeInRight {
+  animation: fadeInRight 0.6s ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+/* Parallax effect */
+.parallax {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
+
+/* Scroll indicator animation */
+@keyframes scrollBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+.scroll-bounce {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  /* Hero section text scaling */
+  .hero-title {
+    @apply text-4xl leading-tight;
+  }
+
+  /* Button touch targets */
+  .mobile-button {
+    @apply min-h-[44px] px-6 py-3;
+  }
+
+  /* Card spacing */
+  .mobile-card {
+    @apply p-4 mb-4;
+  }
+
+  /* Navigation improvements */
+  .mobile-nav {
+    @apply text-base leading-relaxed;
+  }
+
+  /* Form improvements */
+  .mobile-form input,
+  .mobile-form textarea,
+  .mobile-form select {
+    @apply min-h-[44px] text-base;
+  }
+
+  /* Section padding */
+  .mobile-section {
+    @apply py-12;
+  }
+}
+
+/* Container max-width for better mobile experience */
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+  }
+
+  /* Reduce animation intensity on mobile */
+  .animate-fadeInUp,
+  .animate-fadeInDown,
+  .animate-fadeInLeft,
+  .animate-fadeInRight {
+    animation-duration: 0.4s;
+  }
+
+  /* Better touch targets */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+}
+
+/* Improve readability on small screens */
+@media (max-width: 480px) {
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1 { @apply text-3xl leading-tight; }
+  h2 { @apply text-2xl leading-tight; }
+  h3 { @apply text-xl leading-tight; }
+
+  /* Stack elements vertically on very small screens */
+  .mobile-stack {
+    @apply flex-col space-y-4 space-x-0;
+  }
+}
