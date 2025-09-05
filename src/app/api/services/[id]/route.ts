@@ -18,11 +18,12 @@ const serviceSchema = z.object({
 // GET /api/services/[id]
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const service = await prisma.service.findUnique({
-      where: { id: params.id },
+      where: { id },
       select: {
         id: true,
         title: true,
@@ -58,7 +59,7 @@ export async function GET(
 // PUT /api/services/[id]
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions)
@@ -70,11 +71,12 @@ export async function PUT(
       )
     }
 
+    const { id } = await params;
     const body = await request.json()
     const validatedData = serviceSchema.parse(body)
 
     const service = await prisma.service.update({
-      where: { id: params.id },
+      where: { id },
       data: validatedData,
     })
 
@@ -98,7 +100,7 @@ export async function PUT(
 // DELETE /api/services/[id]
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions)
@@ -110,8 +112,9 @@ export async function DELETE(
       )
     }
 
+    const { id } = await params;
     await prisma.service.delete({
-      where: { id: params.id },
+      where: { id },
     })
 
     return NextResponse.json({ message: '서비스가 삭제되었습니다' })

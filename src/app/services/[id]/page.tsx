@@ -4,15 +4,16 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 interface ServicePageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export default async function ServicePage({ params }: ServicePageProps) {
+  const { id } = await params;
   const service = await prisma.service.findUnique({
     where: { 
-      id: params.id,
+      id,
       isActive: true 
     },
     select: {
